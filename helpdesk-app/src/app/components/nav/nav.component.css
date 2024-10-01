@@ -4,7 +4,7 @@
 
 .sidenav {
     width: 13rem;
-    background: #0974f1;
+    background: #ebf4f5;
 }
 
 .sidenav a {
@@ -15,8 +15,14 @@
     margin-right: .6rem;
 }
 
+img {
+    width: 100%;
+    height: 7rem;
+    margin: .8rem auto 1rem auto;
+}
+
 .menu {
     margin: 1rem 0 0 1rem;
-    color: white;
-    background: #0974f1;
+    color: black;
+    background: #ebf4f5;
 }
