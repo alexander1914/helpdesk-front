@@ -35,9 +35,7 @@ export class TecnicoListComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+  ngAfterViewInit(): void {    
     this.dataSource.paginator = this.paginator    
   }
 }
