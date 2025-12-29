@@ -8,7 +8,7 @@
 .form {
   width: 30rem;
   margin: auto;
-  background-color: black;
+  background-color: whitesmoke;
   padding: 4rem 1rem;
   border-radius: 1rem;
 }
@@ -16,7 +16,7 @@
 h1{
   width: 100%;
   text-align: center;
-  color: white;
+  color: blue;
 }
 
 img{
