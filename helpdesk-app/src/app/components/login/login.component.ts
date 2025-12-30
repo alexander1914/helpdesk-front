@@ -4,8 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Credenciais } from '../../models/credenciais';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { timeout } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,10 @@ export class LoginComponent implements OnInit {
   emailControl = new FormControl(null, Validators.email);
   passwordControl = new FormControl(null, Validators.minLength(3))
 
-  constructor(private toast: ToastrService) { }
+  constructor(private toast: ToastrService,
+              private service: AuthService,
+              private router: Router
+  ) { }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -38,9 +42,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(){
-    this.toast.error('User and or password inválid', 'Login');
-    this.creds.password = '';
+  login() {
+    this.service.authetication(this.creds)
+    .subscribe(response => {
+      this.toast.info(response.headers.get('Authorization'))
+      this.service.successfullLogin(response.headers.get('Authorization').substring(7));
+      this.router.navigate(['']);
+    }, () => {
+      this.toast.error('User or password inválids')
+    })
   }
 
 }
