@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
     debugger;
     this.service.authetication(this.creds).subscribe(response => {
       this.service.successfullLogin(response.headers.get('Authorization').substring(7));
-      this.router.navigate([''])
+      this.router.navigate(['']);
     }, () => {
-      this.toast.error('User or password inválids')
+      this.toast.error('User or password inválids');
     })
   }
 

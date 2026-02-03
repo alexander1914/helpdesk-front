@@ -36,7 +36,7 @@ export class TecnicoListComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit(): void {    
-    this.dataSource.paginator = this.paginator    
+    this.dataSource.paginator = this.paginator; 
   }
 }
 
