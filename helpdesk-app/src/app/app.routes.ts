@@ -6,11 +6,11 @@ import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
-    {path: "login", component: LoginComponent},
+    { path: "login", component: LoginComponent },
     {
-        path: "", component: NavComponent, canActivate:[authGuard], children: [
-            {path: "home", component: HomeComponent},
-            {path: "tecnicos", component: TecnicoListComponent}
+        path: "", component: NavComponent, canActivate: [authGuard], children: [
+            { path: "home", component: HomeComponent },
+            { path: "tecnicos", component: TecnicoListComponent }
         ]
     }
 ];

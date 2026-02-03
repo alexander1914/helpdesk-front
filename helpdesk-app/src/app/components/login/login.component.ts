@@ -26,12 +26,11 @@ export class LoginComponent implements OnInit {
   passwordControl = new FormControl(null, Validators.minLength(3))
 
   constructor(private toast: ToastrService,
-              private service: AuthService,
-              private router: Router
+    private service: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   validateFields(): boolean {
@@ -43,11 +42,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.service.authetication(this.creds)
-    .subscribe(response => {
-      this.toast.info(response.headers.get('Authorization'))
+    debugger;
+    this.service.authetication(this.creds).subscribe(response => {
       this.service.successfullLogin(response.headers.get('Authorization').substring(7));
-      this.router.navigate(['']);
+      this.router.navigate([''])
     }, () => {
       this.toast.error('User or password inválids')
     })
