@@ -4,18 +4,23 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
+    // Register my class Toastr message on project
     provideToastr({
       timeOut: 4000,
       closeButton: true,
       progressBar: true
     }),
-    provideHttpClient()
+    provideHttpClient(
+      // Register my class AuthInterceptor
+      withInterceptors([AuthInterceptor])
+    )    
   ]
 };
