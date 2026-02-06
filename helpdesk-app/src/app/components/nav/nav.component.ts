@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterOutlet, MatButtonModule, MatSidenavModule, MatListModule, MatIconModule, HeaderComponent],
+  imports: [RouterOutlet, RouterLink, MatButtonModule, MatSidenavModule, MatListModule, MatIconModule, HeaderComponent],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
