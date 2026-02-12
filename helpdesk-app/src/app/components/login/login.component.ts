@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   passwordControl = new FormControl(null, Validators.minLength(3))
 
   constructor(private toast: ToastrService,
-    private service: AuthService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -41,13 +41,26 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {    
-    this.service.authetication(this.creds).subscribe(response => {
-      this.service.successfullLogin(response.headers.get('Authorization').substring(7));
-      this.router.navigate(['']);
-    }, () => {
-      this.toast.error('User or password inválids');
-    })
+  login() {
+    this.authService.authenticate(this.creds).subscribe({
+      next: (response) => {
+        // O header 'Authorization' só será lido se o backend liberar o Expose-Headers
+        const token = response.headers.get('Authorization');
+        if (token) {
+          this.authService.successfulLogin(token);
+          this.toast.success('Login realizado com sucesso!');
+          this.router.navigate(['home']);
+        }
+      },
+      error: (ex) => {
+        console.error('Erro detalhado:', ex);
+        if (ex.status === 0) {
+          this.toast.error('O servidor não respondeu. Possível erro de CORS ou Backend offline.');
+        } else {
+          this.toast.error('Usuário ou senha inválidos');
+        }
+      }
+    });
   }
 
 }

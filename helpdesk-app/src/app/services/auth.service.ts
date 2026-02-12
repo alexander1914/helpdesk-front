@@ -1,38 +1,41 @@
-import { Injectable } from '@angular/core';
-import { Credenciais } from '../models/credenciais';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from '../config/api.config';
+import { Credenciais } from '../models/credenciais';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private jwtService = new JwtHelperService();
 
-  jwtService: JwtHelperService = new JwtHelperService();
-
-  constructor(private http: HttpClient) { }
-
-  authetication(creds: Credenciais) {
+  authenticate(creds: Credenciais) {
     return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
       observe: 'response',
       responseType: 'text'
     });
   }
 
-  successfullLogin(authToken: string) {
-    localStorage.setItem('token', authToken);
+  successfulLogin(authToken: string) {
+    const token = authToken.startsWith('Bearer ') ? authToken.substring(7) : authToken;
+    localStorage.setItem('token', token);
   }
 
-  isAutheticated() {
-    let token = localStorage.getItem('token');
-    if (token != null) {
-      return !this.jwtService.isTokenExpired(token);
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        return !this.jwtService.isTokenExpired(token);
+      } catch (e) {
+        return false;
+      }
     }
     return false;
   }
 
-  logout(){
-    localStorage.clear();
+  logout() {
+    localStorage.removeItem('token');
   }
 }
