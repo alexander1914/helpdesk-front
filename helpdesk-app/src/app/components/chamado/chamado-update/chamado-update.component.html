@@ -12,7 +12,7 @@
 
     <div class="status-priority">
         <mat-form-field appearance="outline">
-            <mat-label>{{ getStatus(chamado.status) }}</mat-label>
+            <mat-label>STATUS ({{ getStatus(chamado.status) }})</mat-label>
             <mat-select [formControl]="status" required [(ngModel)]="chamado.status" name="status">
                 <mat-option value="0">ABERTO</mat-option>
                 <mat-option value="1">EM ANDAMENTO</mat-option>
@@ -20,7 +20,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>{{ getPriority(chamado.prioridade) }}</mat-label>
+            <mat-label>PRIORIDADE ({{ getPriority(chamado.prioridade) }})</mat-label>
             <mat-select [formControl]="priority" required [(ngModel)]="chamado.prioridade" name="prioridade">
                 <mat-option value="0">BAIXA</mat-option>
                 <mat-option value="1">MEDIA</mat-option>
@@ -31,7 +31,7 @@
 
     <div class="tecnico">
         <mat-form-field class="full-width" appearance="outline">
-            <mat-label>{{ chamado.nomeTecnico }}</mat-label>
+            <mat-label>TÉCNICO ({{ chamado.nomeTecnico }})</mat-label>
             <mat-select [formControl]="technical" required [(ngModel)]="chamado.tecnico" name="tecnico">
                 <mat-option *ngFor="let tecnico of tecnicos" value="{{tecnico.id}}">{{tecnico.nome}}</mat-option>
             </mat-select>
@@ -40,7 +40,7 @@
 
     <div class="cleinte">
         <mat-form-field class="full-width" appearance="outline">
-            <mat-label>{{ chamado.nomeCliente }}</mat-label>
+            <mat-label>CLIENTE ({{ chamado.nomeCliente }})</mat-label>
             <mat-select [formControl]="customer" required [(ngModel)]="chamado.cliente" name="cliente">
                 <mat-option *ngFor="let cliente of clientes" value="{{cliente.id}}">{{cliente.nome}}</mat-option>
             </mat-select>
