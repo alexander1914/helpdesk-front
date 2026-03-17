@@ -1,4 +1,4 @@
-.container{
+.container {
   height: 100%;
   display: flex;
   align-items: center;
@@ -13,25 +13,27 @@
   border-radius: 1rem;
 }
 
-h1{
+h1 {
   width: 100%;
   text-align: center;
   color: blue;
 }
 
-img{
+img {
   height: 15rem;
   width: auto;
   margin: 1.5rem auto 1.5rem auto;
-  display: flex; 
+  display: flex;
 }
 
 .full-width {
   width: 100%;
 }
 
-button{
+button {
   margin-top: 1.5rem;
 }
 
-
+mat-icon {
+  opacity: .6;
+}
